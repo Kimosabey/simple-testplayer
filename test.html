@@ -11,6 +11,9 @@
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@200,300,400,500,700,900&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="styles.css" />
+
+    <script src="app.js" defer></script>
+
   </head>
   <body>
     <div class="page">
@@ -49,63 +52,168 @@
       <main class="main">
         <div class="container">
           <div class="grid">
-            <section class="panel" style="grid-column: span 8" aria-label="Question" id="question">
+            <section class="panel" style="grid-column: span 8" aria-label="Questions" id="question">
               <div class="meta">
-                <span class="pill">Question 2</span>
-                <span class="pill">of 10</span>
-                <span class="pill">00:43 elapsed</span>
+                <span class="pill">10 questions</span>
+                <span class="pill">Multiple choice</span>
+                <span class="pill" id="elapsedPill">Timer: —</span>
               </div>
               <div class="rule"></div>
 
-              <h2 class="panel-title">Choose the correct semantic element.</h2>
-              <div class="question">Which HTML element should wrap a site’s primary navigation links?</div>
+              <h2 class="panel-title">Answer clean. Answer honestly.</h2>
+              <p class="small">Submit at the bottom to generate a scored results view with stats + charts.</p>
 
-              <form class="options" action="results.html" method="get">
-                <label class="option">
-                  <input type="radio" name="q2" value="div" />
-                  <span><strong>&lt;div&gt;</strong><br /><span class="small">Generic container with no meaning.</span></span>
-                </label>
+              <form action="results.html" method="get" id="testForm" style="margin-top: 18px">
+                <input type="hidden" name="elapsed" id="elapsedField" value="" />
 
-                <label class="option">
-                  <input type="radio" name="q2" value="nav" />
-                  <span><strong>&lt;nav&gt;</strong><br /><span class="small">Represents a section of navigation links.</span></span>
-                </label>
+                <div class="q-block" id="q1">
+                  <div class="q-kicker">Q1 · Semantics</div>
+                  <h3 class="q-title">Landmark for primary content</h3>
+                  <div class="question">Which element should wrap the main content of the page (excluding header/nav/footer)?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="div" /> <span><strong>&lt;div&gt;</strong><br /><span class="small">Generic container.</span></span></label>
+                    <label class="option"><input type="radio" name="q1" value="main" /> <span><strong>&lt;main&gt;</strong><br /><span class="small">The dominant content of the document.</span></span></label>
+                    <label class="option"><input type="radio" name="q1" value="aside" /> <span><strong>&lt;aside&gt;</strong><br /><span class="small">Tangential content, not the core.</span></span></label>
+                    <label class="option"><input type="radio" name="q1" value="section" /> <span><strong>&lt;section&gt;</strong><br /><span class="small">A thematic region, not specifically “main”.</span></span></label>
+                  </div>
+                </div>
 
-                <label class="option">
-                  <input type="radio" name="q2" value="section" />
-                  <span><strong>&lt;section&gt;</strong><br /><span class="small">A thematic grouping, not specifically navigation.</span></span>
-                </label>
+                <div class="q-block" id="q2">
+                  <div class="q-kicker">Q2 · Semantics</div>
+                  <h3 class="q-title">Navigation landmark</h3>
+                  <div class="question">Which element should wrap a site’s primary navigation links?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="div" /> <span><strong>&lt;div&gt;</strong><br /><span class="small">Generic container with no meaning.</span></span></label>
+                    <label class="option"><input type="radio" name="q2" value="nav" /> <span><strong>&lt;nav&gt;</strong><br /><span class="small">Represents a section of navigation links.</span></span></label>
+                    <label class="option"><input type="radio" name="q2" value="section" /> <span><strong>&lt;section&gt;</strong><br /><span class="small">A thematic grouping, not specifically navigation.</span></span></label>
+                    <label class="option"><input type="radio" name="q2" value="aside" /> <span><strong>&lt;aside&gt;</strong><br /><span class="small">Tangential content, often sidebars.</span></span></label>
+                  </div>
+                </div>
 
-                <label class="option">
-                  <input type="radio" name="q2" value="aside" />
-                  <span><strong>&lt;aside&gt;</strong><br /><span class="small">Tangential content, often sidebars.</span></span>
-                </label>
+                <div class="q-block" id="q3">
+                  <div class="q-kicker">Q3 · Forms</div>
+                  <h3 class="q-title">Labeling inputs</h3>
+                  <div class="question">What’s the best way to associate text with a form control for accessibility?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="placeholder" /> <span><strong>placeholder</strong><br /><span class="small">Not a label; disappears and isn’t reliable.</span></span></label>
+                    <label class="option"><input type="radio" name="q3" value="label" /> <span><strong>&lt;label for="…"&gt;</strong><br /><span class="small">Explicitly connects text to a control.</span></span></label>
+                    <label class="option"><input type="radio" name="q3" value="title" /> <span><strong>title</strong><br /><span class="small">Inconsistent and not visible by default.</span></span></label>
+                    <label class="option"><input type="radio" name="q3" value="br" /> <span><strong>&lt;br&gt;</strong><br /><span class="small">Line breaks don’t add semantics.</span></span></label>
+                  </div>
+                </div>
 
-                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top: 12px">
-                  <a class="btn btn-ghost" href="test.html" aria-disabled="true">Previous</a>
-                  <button class="btn btn-amber" type="submit">Finish (demo)</button>
+                <div class="q-block" id="q4">
+                  <div class="q-kicker">Q4 · Media</div>
+                  <h3 class="q-title">Decorative images</h3>
+                  <div class="question">For a purely decorative image, which alt attribute value is correct?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q4" value="omit" /> <span><strong>Omit alt</strong><br /><span class="small">Risk: screen readers may read the file name.</span></span></label>
+                    <label class="option"><input type="radio" name="q4" value="empty" /> <span><strong>alt=""</strong><br /><span class="small">Marks it decorative so assistive tech can skip it.</span></span></label>
+                    <label class="option"><input type="radio" name="q4" value="space" /> <span><strong>alt=" "</strong><br /><span class="small">Not equivalent to empty alt.</span></span></label>
+                    <label class="option"><input type="radio" name="q4" value="decor" /> <span><strong>alt="decorative"</strong><br /><span class="small">Adds noise; not helpful.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q5">
+                  <div class="q-kicker">Q5 · Semantics</div>
+                  <h3 class="q-title">Heading hierarchy</h3>
+                  <div class="question">After an &lt;h1&gt;, what should the next heading level typically be?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q5" value="h3" /> <span><strong>&lt;h3&gt;</strong><br /><span class="small">Skips a level without a reason.</span></span></label>
+                    <label class="option"><input type="radio" name="q5" value="h2" /> <span><strong>&lt;h2&gt;</strong><br /><span class="small">Maintains a consistent outline.</span></span></label>
+                    <label class="option"><input type="radio" name="q5" value="h6" /> <span><strong>&lt;h6&gt;</strong><br /><span class="small">Jumps too far down the hierarchy.</span></span></label>
+                    <label class="option"><input type="radio" name="q5" value="p" /> <span><strong>&lt;p&gt;</strong><br /><span class="small">Paragraphs aren’t headings.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q6">
+                  <div class="q-kicker">Q6 · Forms</div>
+                  <h3 class="q-title">Form submission</h3>
+                  <div class="question">Which attribute value makes a button submit a form explicitly?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q6" value="submit" /> <span><strong>type="submit"</strong><br /><span class="small">Clear intent; works across contexts.</span></span></label>
+                    <label class="option"><input type="radio" name="q6" value="button" /> <span><strong>type="button"</strong><br /><span class="small">Does not submit by default.</span></span></label>
+                    <label class="option"><input type="radio" name="q6" value="reset" /> <span><strong>type="reset"</strong><br /><span class="small">Resets fields—usually not desired.</span></span></label>
+                    <label class="option"><input type="radio" name="q6" value="link" /> <span><strong>type="link"</strong><br /><span class="small">Not a valid button type.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q7">
+                  <div class="q-kicker">Q7 · Forms</div>
+                  <h3 class="q-title">Input types</h3>
+                  <div class="question">What input type should you use for an email address?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q7" value="text" /> <span><strong>type="text"</strong><br /><span class="small">No email-specific keyboard/validation.</span></span></label>
+                    <label class="option"><input type="radio" name="q7" value="email" /> <span><strong>type="email"</strong><br /><span class="small">Enables relevant keyboards and constraints.</span></span></label>
+                    <label class="option"><input type="radio" name="q7" value="url" /> <span><strong>type="url"</strong><br /><span class="small">Meant for URLs.</span></span></label>
+                    <label class="option"><input type="radio" name="q7" value="number" /> <span><strong>type="number"</strong><br /><span class="small">Not appropriate for email.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q8">
+                  <div class="q-kicker">Q8 · Semantics</div>
+                  <h3 class="q-title">Page footer</h3>
+                  <div class="question">Which element best represents the footer for a page or section?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q8" value="footer" /> <span><strong>&lt;footer&gt;</strong><br /><span class="small">Represents footer content for its nearest sectioning ancestor.</span></span></label>
+                    <label class="option"><input type="radio" name="q8" value="bottom" /> <span><strong>&lt;bottom&gt;</strong><br /><span class="small">Not a valid HTML element.</span></span></label>
+                    <label class="option"><input type="radio" name="q8" value="aside" /> <span><strong>&lt;aside&gt;</strong><br /><span class="small">For tangential content.</span></span></label>
+                    <label class="option"><input type="radio" name="q8" value="section" /> <span><strong>&lt;section&gt;</strong><br /><span class="small">A themed grouping, not specifically a footer.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q9">
+                  <div class="q-kicker">Q9 · Media</div>
+                  <h3 class="q-title">Captions</h3>
+                  <div class="question">Which pattern is best for an image with a caption?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q9" value="figure" /> <span><strong>&lt;figure&gt; + &lt;figcaption&gt;</strong><br /><span class="small">Pairs media with its caption as a unit.</span></span></label>
+                    <label class="option"><input type="radio" name="q9" value="div" /> <span><strong>&lt;div&gt; + &lt;p&gt;</strong><br /><span class="small">Works visually, but misses semantics.</span></span></label>
+                    <label class="option"><input type="radio" name="q9" value="imgtitle" /> <span><strong>img title</strong><br /><span class="small">Not a substitute for a visible caption.</span></span></label>
+                    <label class="option"><input type="radio" name="q9" value="marquee" /> <span><strong>&lt;marquee&gt;</strong><br /><span class="small">Absolutely not.</span></span></label>
+                  </div>
+                </div>
+
+                <div class="q-block" id="q10">
+                  <div class="q-kicker">Q10 · Accessibility</div>
+                  <h3 class="q-title">Announcing updates</h3>
+                  <div class="question">Which attribute helps screen readers announce dynamic content changes?</div>
+                  <div class="options">
+                    <label class="option"><input type="radio" name="q10" value="aria-live" /> <span><strong>aria-live</strong><br /><span class="small">Creates a live region for announcements.</span></span></label>
+                    <label class="option"><input type="radio" name="q10" value="aria-hidden" /> <span><strong>aria-hidden</strong><br /><span class="small">Hides content from assistive tech.</span></span></label>
+                    <label class="option"><input type="radio" name="q10" value="tabindex" /> <span><strong>tabindex</strong><br /><span class="small">Controls focus order, not announcements.</span></span></label>
+                    <label class="option"><input type="radio" name="q10" value="draggable" /> <span><strong>draggable</strong><br /><span class="small">For drag-and-drop behavior.</span></span></label>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top: 22px">
+                  <a class="btn btn-ghost" href="index.html">Cancel</a>
+                  <button class="btn btn-amber" type="submit">See results</button>
                 </div>
               </form>
             </section>
 
             <aside class="panel" style="grid-column: span 4" aria-label="Test sidebar">
               <div class="meta">
-                <span class="pill">Tips</span>
-                <span>Keep it semantic</span>
+                <span class="pill">Sections</span>
+                <span>Semantics · Forms · A11y</span>
               </div>
               <div class="rule"></div>
               <p class="small">
-                Prefer elements that describe purpose over layout. Screen readers and search engines rely on these signals.
+                Answer in any order. Use the anchors to jump:
+                <a href="#q1">Q1</a>, <a href="#q5">Q5</a>, <a href="#q10">Q10</a>.
               </p>
               <div style="height: 14px"></div>
               <div class="meta">
                 <span class="pill">Keyboard</span>
-                <span>Tab through options</span>
+                <span>Tab + Space</span>
               </div>
               <div class="rule"></div>
               <p class="small">
                 Focus states use an amber outline—high contrast, no shadow tricks.
               </p>
+              <div style="height: 14px"></div>
+              <a class="btn btn-amber" href="#q10" style="width:100%">Jump to end</a>
             </aside>
           </div>
         </div>

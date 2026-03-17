@@ -11,6 +11,9 @@
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@200,300,400,500,700,900&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="styles.css" />
+
+    <script src="app.js" defer></script>
+
   </head>
   <body>
     <div class="page">
@@ -32,20 +35,50 @@
 
       <section class="hero">
         <div class="container">
-          <div class="hero-inner">
+          <div class="hero-inner" id="resultsRoot">
             <div class="kicker">Results</div>
-            <h1 class="score">7 / 10</h1>
-            <p class="subscore">Solid baseline. Your misses are clustered in semantics + form labeling.</p>
 
-            <div class="hero-actions">
-              <a class="btn btn-amber" href="test.html">Retake (demo)</a>
-              <a class="btn btn-ghost" href="index.html">Choose another test</a>
-            </div>
+            <div class="hero-metrics">
+              <div>
+                <h1 class="score" id="scoreLine">7 / 10</h1>
+                <p class="subscore" id="summaryLine">Solid baseline. Your misses are clustered in semantics + form labeling.</p>
 
-            <div class="breakdown" aria-label="Results breakdown">
-              <div class="item"><strong>Strong</strong><br /><span>Headings, document structure, common tags</span></div>
-              <div class="item"><strong>Needs work</strong><br /><span>Landmarks, labels, input types, ARIA basics</span></div>
-              <div class="item"><strong>Next step</strong><br /><span>Review &lt;nav&gt;, &lt;main&gt;, &lt;label&gt; patterns and try again</span></div>
+                <div class="hero-actions">
+                  <a class="btn btn-amber" href="test.html">Retake</a>
+                  <a class="btn btn-ghost" href="index.html">Choose another test</a>
+                </div>
+
+                <div class="stats" aria-label="Key stats">
+                  <div class="stat">
+                    <div class="stat-label">Accuracy</div>
+                    <div class="stat-value" id="statAccuracy">70%</div>
+                    <div class="stat-note" id="statAccuracyNote">Target: 85%+ for comfort.</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Correct</div>
+                    <div class="stat-value" id="statCorrect">7</div>
+                    <div class="stat-note" id="statCorrectNote">Out of 10 questions.</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-label">Time</div>
+                    <div class="stat-value" id="statTime">—</div>
+                    <div class="stat-note" id="statPace">Pace: —</div>
+                  </div>
+                </div>
+
+                <p class="small" style="margin-top: 14px; color: rgba(250, 246, 239, 0.70)">
+                  If JavaScript is disabled, this page shows sample data.
+                </p>
+              </div>
+
+              <div style="display:flex;justify-content:flex-end">
+                <div class="donut" id="donut" style="--p:70" aria-label="Score chart">
+                  <div class="donut-center">
+                    <strong id="donutPct">70%</strong>
+                    <span>score</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -54,29 +87,26 @@
       <main class="main">
         <div class="container">
           <div class="grid">
+            <section class="card" style="grid-column: span 12" aria-label="Skill breakdown">
+              <div class="meta">
+                <span class="pill">Analysis</span>
+                <span id="analysisPill">From your answers</span>
+              </div>
+              <div class="rule"></div>
+              <h2>Skill breakdown</h2>
+              <p class="small">Category accuracy shows where your misses cluster. Aim for even bars.</p>
+              <div class="bars" id="categoryBars" aria-label="Category accuracy bars"></div>
+            </section>
+
             <section class="card" style="grid-column: span 12" aria-label="Answer review">
               <div class="meta">
                 <span class="pill">Review</span>
-                <span>Static sample</span>
+                <span>Explanations</span>
               </div>
               <div class="rule"></div>
-              <h2>Quick review</h2>
-              <p class="small">
-                This page is intentionally static (no JavaScript scoring). If you want real scoring, question navigation, and stored results,
-                I can add a minimal script next.
-              </p>
-              <div style="height: 10px"></div>
-
-              <div class="panel" style="background: rgba(255,255,255,0.22)">
-                <div class="meta">
-                  <span class="pill">Q2</span>
-                  <span class="pill">Correct: &lt;nav&gt;</span>
-                </div>
-                <div class="rule"></div>
-                <div class="small">
-                  Use <strong>&lt;nav&gt;</strong> for a major navigation block. It creates a semantic landmark that assistive tech can jump to.
-                </div>
-              </div>
+              <h2>Question review</h2>
+              <p class="small">Each item includes your answer, the correct answer, and a one-line reason.</p>
+              <div id="reviewList" style="display:grid;gap:12px;margin-top:16px"></div>
             </section>
           </div>
         </div>
