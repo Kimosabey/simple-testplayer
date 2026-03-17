@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TestPlayer — Taking</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;800;900&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@200,300,400,500,700,900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="container">
+          <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="TestPlayer home">
+              <span class="brand-mark" aria-hidden="true"></span>
+              <span class="brand-name">TestPlayer</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+              <a href="index.html">Tests</a>
+              <a href="test.html" aria-current="page">Take a test</a>
+              <a href="results.html">Results</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="kicker">Taking</div>
+            <h1 class="h1">HTML Foundations</h1>
+            <p class="lede">
+              This is a static prototype (HTML + CSS only). The navigation below simulates “Next” and “Finish”.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-ghost" href="index.html">Back to list</a>
+              <a class="btn btn-amber" href="#question">Go to question</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main class="main">
+        <div class="container">
+          <div class="grid">
+            <section class="panel" style="grid-column: span 8" aria-label="Question" id="question">
+              <div class="meta">
+                <span class="pill">Question 2</span>
+                <span class="pill">of 10</span>
+                <span class="pill">00:43 elapsed</span>
+              </div>
+              <div class="rule"></div>
+
+              <h2 class="panel-title">Choose the correct semantic element.</h2>
+              <div class="question">Which HTML element should wrap a site’s primary navigation links?</div>
+
+              <form class="options" action="results.html" method="get">
+                <label class="option">
+                  <input type="radio" name="q2" value="div" />
+                  <span><strong>&lt;div&gt;</strong><br /><span class="small">Generic container with no meaning.</span></span>
+                </label>
+
+                <label class="option">
+                  <input type="radio" name="q2" value="nav" />
+                  <span><strong>&lt;nav&gt;</strong><br /><span class="small">Represents a section of navigation links.</span></span>
+                </label>
+
+                <label class="option">
+                  <input type="radio" name="q2" value="section" />
+                  <span><strong>&lt;section&gt;</strong><br /><span class="small">A thematic grouping, not specifically navigation.</span></span>
+                </label>
+
+                <label class="option">
+                  <input type="radio" name="q2" value="aside" />
+                  <span><strong>&lt;aside&gt;</strong><br /><span class="small">Tangential content, often sidebars.</span></span>
+                </label>
+
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top: 12px">
+                  <a class="btn btn-ghost" href="test.html" aria-disabled="true">Previous</a>
+                  <button class="btn btn-amber" type="submit">Finish (demo)</button>
+                </div>
+              </form>
+            </section>
+
+            <aside class="panel" style="grid-column: span 4" aria-label="Test sidebar">
+              <div class="meta">
+                <span class="pill">Tips</span>
+                <span>Keep it semantic</span>
+              </div>
+              <div class="rule"></div>
+              <p class="small">
+                Prefer elements that describe purpose over layout. Screen readers and search engines rely on these signals.
+              </p>
+              <div style="height: 14px"></div>
+              <div class="meta">
+                <span class="pill">Keyboard</span>
+                <span>Tab through options</span>
+              </div>
+              <div class="rule"></div>
+              <p class="small">
+                Focus states use an amber outline—high contrast, no shadow tricks.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div>Prototype flow</div>
+            <div><a href="results.html">View results</a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
