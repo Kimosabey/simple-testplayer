@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TestPlayer — Results</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;800;900&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@200,300,400,500,700,900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="container">
+          <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="TestPlayer home">
+              <span class="brand-mark" aria-hidden="true"></span>
+              <span class="brand-name">TestPlayer</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+              <a href="index.html">Tests</a>
+              <a href="test.html">Take a test</a>
+              <a href="results.html" aria-current="page">Results</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="kicker">Results</div>
+            <h1 class="score">7 / 10</h1>
+            <p class="subscore">Solid baseline. Your misses are clustered in semantics + form labeling.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-amber" href="test.html">Retake (demo)</a>
+              <a class="btn btn-ghost" href="index.html">Choose another test</a>
+            </div>
+
+            <div class="breakdown" aria-label="Results breakdown">
+              <div class="item"><strong>Strong</strong><br /><span>Headings, document structure, common tags</span></div>
+              <div class="item"><strong>Needs work</strong><br /><span>Landmarks, labels, input types, ARIA basics</span></div>
+              <div class="item"><strong>Next step</strong><br /><span>Review &lt;nav&gt;, &lt;main&gt;, &lt;label&gt; patterns and try again</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main class="main">
+        <div class="container">
+          <div class="grid">
+            <section class="card" style="grid-column: span 12" aria-label="Answer review">
+              <div class="meta">
+                <span class="pill">Review</span>
+                <span>Static sample</span>
+              </div>
+              <div class="rule"></div>
+              <h2>Quick review</h2>
+              <p class="small">
+                This page is intentionally static (no JavaScript scoring). If you want real scoring, question navigation, and stored results,
+                I can add a minimal script next.
+              </p>
+              <div style="height: 10px"></div>
+
+              <div class="panel" style="background: rgba(255,255,255,0.22)">
+                <div class="meta">
+                  <span class="pill">Q2</span>
+                  <span class="pill">Correct: &lt;nav&gt;</span>
+                </div>
+                <div class="rule"></div>
+                <div class="small">
+                  Use <strong>&lt;nav&gt;</strong> for a major navigation block. It creates a semantic landmark that assistive tech can jump to.
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div>End of run</div>
+            <div><a href="index.html">Back to tests</a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
