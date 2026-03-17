@@ -5,6 +5,12 @@ const QUESTIONS = [
     category: 'Semantics',
     correct: 'main',
     correctLabel: '<main>',
+    valueLabels: {
+      div: '<div>',
+      main: '<main>',
+      aside: '<aside>',
+      section: '<section>',
+    },
     explanation: 'Use <main> once per page for the primary content so assistive tech can jump straight to it.',
   },
   {
@@ -13,6 +19,12 @@ const QUESTIONS = [
     category: 'Semantics',
     correct: 'nav',
     correctLabel: '<nav>',
+    valueLabels: {
+      div: '<div>',
+      nav: '<nav>',
+      section: '<section>',
+      aside: '<aside>',
+    },
     explanation: '<nav> represents a major block of navigation links and creates a useful landmark.',
   },
   {
@@ -21,6 +33,12 @@ const QUESTIONS = [
     category: 'Forms',
     correct: 'label',
     correctLabel: '<label for="…">',
+    valueLabels: {
+      placeholder: 'placeholder',
+      label: '<label for="…">',
+      title: 'title',
+      br: '<br>',
+    },
     explanation: 'A <label> provides an accessible name and increases the clickable target area.',
   },
   {
@@ -29,6 +47,12 @@ const QUESTIONS = [
     category: 'Media',
     correct: 'empty',
     correctLabel: 'alt=""',
+    valueLabels: {
+      omit: 'Omit alt',
+      empty: 'alt=""',
+      space: 'alt=" "',
+      decor: 'alt="decorative"',
+    },
     explanation: 'An empty alt text marks the image as decorative so screen readers can skip it.',
   },
   {
@@ -37,6 +61,12 @@ const QUESTIONS = [
     category: 'Semantics',
     correct: 'h2',
     correctLabel: '<h2>',
+    valueLabels: {
+      h3: '<h3>',
+      h2: '<h2>',
+      h6: '<h6>',
+      p: '<p>',
+    },
     explanation: 'Keep a logical outline: H1 → H2 → H3, etc. Avoid skipping levels without a reason.',
   },
   {
@@ -45,6 +75,12 @@ const QUESTIONS = [
     category: 'Forms',
     correct: 'submit',
     correctLabel: 'type="submit"',
+    valueLabels: {
+      submit: 'type="submit"',
+      button: 'type="button"',
+      reset: 'type="reset"',
+      link: 'type="link"',
+    },
     explanation: 'Explicitly setting type="submit" avoids surprises when buttons are reused or moved.',
   },
   {
@@ -53,6 +89,12 @@ const QUESTIONS = [
     category: 'Forms',
     correct: 'email',
     correctLabel: 'type="email"',
+    valueLabels: {
+      text: 'type="text"',
+      email: 'type="email"',
+      url: 'type="url"',
+      number: 'type="number"',
+    },
     explanation: 'type="email" provides appropriate keyboards on mobile and enables built-in constraints.',
   },
   {
@@ -61,6 +103,12 @@ const QUESTIONS = [
     category: 'Semantics',
     correct: 'footer',
     correctLabel: '<footer>',
+    valueLabels: {
+      footer: '<footer>',
+      bottom: '<bottom>',
+      aside: '<aside>',
+      section: '<section>',
+    },
     explanation: '<footer> identifies footer content for a page or section, improving document structure.',
   },
   {
@@ -69,6 +117,12 @@ const QUESTIONS = [
     category: 'Media',
     correct: 'figure',
     correctLabel: '<figure> + <figcaption>',
+    valueLabels: {
+      figure: '<figure> + <figcaption>',
+      div: '<div> + <p>',
+      imgtitle: 'img title',
+      marquee: '<marquee>',
+    },
     explanation: '<figure> groups media with its caption as a semantic unit.',
   },
   {
@@ -77,6 +131,12 @@ const QUESTIONS = [
     category: 'Accessibility',
     correct: 'aria-live',
     correctLabel: 'aria-live',
+    valueLabels: {
+      'aria-live': 'aria-live',
+      'aria-hidden': 'aria-hidden',
+      tabindex: 'tabindex',
+      draggable: 'draggable',
+    },
     explanation: 'aria-live defines a live region to announce content changes without moving focus.',
   },
 ];
@@ -227,7 +287,9 @@ function renderReview(answers) {
       ? 'border-color: rgba(224, 123, 57, 0.55); background: rgba(224, 123, 57, 0.10);'
       : 'border-color: rgba(26, 26, 26, 0.12); background: rgba(255, 255, 255, 0.32);';
 
-    const yourAnswer = a.isAnswered ? safeText(a.selected) : '—';
+    const yourAnswer = a.isAnswered
+      ? safeText(a.valueLabels?.[a.selected] ?? a.selected)
+      : '—';
 
     details.innerHTML = `
       <summary class="details-summary">
